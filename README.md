@@ -10,7 +10,13 @@ enter the below command. The bypass execution policy will only last for this ses
 `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` (type A for Yes to All)
 1. Copy path to script
 1. Type `cd (paste path)`
-1. Type `.\(script name)` to run a script 
+1. Type `.\(script name)` to run a script  
+<br/>
+<br/>
+<br/>
+
+**Generally you will only run FolderizeSubmissions and RenameAssignments (in that order)**  
+**For more automated running of students files, the CopyTestFiles and RunTests would be used (in that order as well)**
 
 **FolderizeSubmissions**
 - This creates a folder that is named after the students inside it (first.last) and will group and move all files that are not .ps1 files.
