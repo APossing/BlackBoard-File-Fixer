@@ -1,3 +1,17 @@
+**If running from Mac OS / unix system**
+1. Install PowerShell (https://github.com/PowerShell/PowerShell/releases/) and download and install your system's package and then open it and follow the main instructions.
+
+**How to run**
+1. unzip blackboard submission download. **BE SURE TO MAKE THE FILENAME SHORT AS THE MAX CHARACTERS IS 255 AND YOU WILL REACH IT IF YOU'RE NOT CAREFUL.**
+2. Copy and paste script files into the unzipped folder.
+3. Open PowerShell as admisistrator
+enter the below command. The bypass execution policy will only last for this session inside PowerShell.
+4. PowerShell defaults to restricted mode making it so you cannot run any scripts, so you will have to set your PowerShell to allow for unsigned scripts to run as this script is not signed. The bypass execution policy will only last for this session of PowerShell.
+`Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` (type A for Yes to All)
+5. Copy path to script
+6. Type `cd (paste path)`
+7. Type `.\(script name)` to run a script 
+
 **FolderizeSubmissions**
 - This creates a folder that is named after the students inside it (first.last) and will group and move all files that are not .ps1 files.
 
@@ -12,6 +26,3 @@
 
 **RunHaskell1**
 - An example of a way you can run all the scripts in just one call.
-
-
-**Be sure to allow powershell scripts!!!**
