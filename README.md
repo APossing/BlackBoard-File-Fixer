@@ -6,9 +6,14 @@
 - `-Tests <string>` path to folder with tests (all subfolders and items in this folder will be copied to every folder under directory tag), default is "" and will not copy anything.
 - `-NoTrim` Disables trimming of files after moving to named directories
 - `-Verbose` or `-V` Shows almost everything that is happening during execution.  
-- for example `BlackboardSubmissionCleaner -D C:\Users\Adam\Desktop\unzipBlackboard -v -Tests C:\Users\Adam\Desktop\Tests`
+- for example `BlackboardSubmissionCleaner -D C:\Users\Adam\Desktop\unzipBlackboard -v -Tests C:\Users\Adam\Desktop\Tests`  
 <br/>
-<br/>
+
+**.net Core 3.1 self contained executables download links**  
+
+[Linux-x64](https://github.com/APossing/BlackBoard-File-Fixer/raw/master/BlackboardSubmissionCleaner/Publishes/V1.0/linux-x64/BlackboardSubmissionCleaner)  
+[OSX-x64](https://github.com/APossing/BlackBoard-File-Fixer/raw/master/BlackboardSubmissionCleaner/Publishes/V1.0/osx-x64/BlackboardSubmissionCleaner)  
+[Windows-x64](https://github.com/APossing/BlackBoard-File-Fixer/raw/master/BlackboardSubmissionCleaner/Publishes/V1.0/win-x64/BlackboardSubmissionCleaner.exe)  
 <br/>
 <br/>
 <br/>
