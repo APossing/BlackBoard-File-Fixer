@@ -88,14 +88,22 @@ namespace BlackboardSubmissionCleaner
                 if (!System.IO.Directory.Exists(namedDirectory))
                 {
                     if (verbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"Creating directory {namedDirectory}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
 
                     System.IO.Directory.CreateDirectory(namedDirectory);
                 }
                 else
                 {
                     if (verbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine($"{namedDirectory} already exists...");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
                 }
 
                 foreach (var file in fileGroup.ToList())
@@ -103,7 +111,11 @@ namespace BlackboardSubmissionCleaner
                     string prevName = file.FullName;
                     Directory.Move(file.FullName, namedDirectory + "\\" + file.Name);
                     if (verbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"{file.Name} has been moved from {prevName} into {file.FullName}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
                 }
             }
             Console.WriteLine("Completed moving files");
@@ -138,12 +150,20 @@ namespace BlackboardSubmissionCleaner
                     {
                         Directory.Move(file.FullName, newName);
                         if (verbose)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"{file.Name} has been moved from {prevName} into {newName}");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
                     }
                     else
                     {
                         if (verbose)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine($"{file.Name} has NOT moved As the prev and new names would be the same... from {prevName} into {newName}");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
                     }
                 }
             }
@@ -187,7 +207,11 @@ namespace BlackboardSubmissionCleaner
             foreach(var directory in directories)
             {
                 if (verbose)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"starting copy for {directory.Name}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
                 DirectoryCopy(fromDirectory, directory.FullName, true, verbose);
             }
 
@@ -215,8 +239,22 @@ namespace BlackboardSubmissionCleaner
             {
                 string temppath = Path.Combine(destDirName, file.Name);
                 if (verbose)
+                {
                     Console.WriteLine($"Copying file from {file.FullName} to {temppath}");
-                file.CopyTo(temppath, false);
+                }
+                if (File.Exists(temppath))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"{temppath} already exists, cannot copy");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Copied {file.Name} to {temppath}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    file.CopyTo(temppath, false);
+                }
             }
 
             // If copying subdirectories, copy them and their contents to new location.
