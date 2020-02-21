@@ -19,6 +19,7 @@ namespace BlackboardSubmissionCleaner
             string testFilePath = "";
             bool verbose = false;
             bool trim = true;
+            bool extractZips = false;
             List<string> leftOutExtensions = new List<string> { "txt" };
             if (args.Length > 0)
             {
@@ -51,6 +52,10 @@ namespace BlackboardSubmissionCleaner
                     {
                         verbose = true;
                     }
+                    else if (String.Equals(args[i], "-Extract", StringComparison.OrdinalIgnoreCase))
+                    {
+                        extractZips = true;
+                    }
                     else
                     {
                         Console.WriteLine($"Invalid input \"{0}\"", args[i]);
@@ -69,6 +74,10 @@ namespace BlackboardSubmissionCleaner
             if (testFilePath != "" && folderizeResultSuccess)
             {
                 SubmissionCleaner.CopyTestFiles(testFilePath, executionFilePath, verbose);
+            }
+            if (extractZips && folderizeResultSuccess)
+            {
+                SubmissionCleaner.ExtractZips(executionFilePath, verbose, slash);
             }
         }
     }

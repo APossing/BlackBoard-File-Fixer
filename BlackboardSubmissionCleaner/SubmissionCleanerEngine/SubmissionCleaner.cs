@@ -9,7 +9,7 @@ namespace SubmissionCleanerEngine
     public static class SubmissionCleaner
     {
         public static bool Folderize(string directory, bool verbose, char slash)
-        { 
+        {
             DirectoryInfo d = new DirectoryInfo(directory);
             var files = d.GetFiles();
             Console.WriteLine("Listing first 5 files from directory...");
@@ -213,10 +213,71 @@ namespace SubmissionCleanerEngine
             }
         }
 
-        private static bool ExtractZips(string directory, bool verbose)
+        public static bool ExtractZips(string directory, bool verbose, char slash)
         {
+            DirectoryInfo mainDirectory = new DirectoryInfo(directory);
+            var tempDirectories = mainDirectory.GetDirectories();
+            Console.WriteLine("Listing first 5 directories and their first 5 files...");
+            for (int i = 0; i < Math.Min(5, tempDirectories.Length - 1); i++)
+            {
+                var tempFiles = tempDirectories[i].GetFiles();
+                Console.WriteLine(tempDirectories[i].FullName);
+                for (int j = 0; j < Math.Min(5, tempFiles.Length - 1); j++)
+                {
+                    Console.WriteLine($"\t-{tempFiles[j].Name}");
+                }
+            } 
+            Console.WriteLine("Are you sure you want to continue unzipping files? [y]es [n]o");
 
+            var key = Console.ReadKey();
+            if (char.ToLower(key.KeyChar) != 'y')
+            {
+                Console.WriteLine("no files modified. Exiting...");
+                return false;
+            }
 
+            var directories = mainDirectory.GetDirectories();
+            foreach (var dir in directories)
+            {
+                var files = dir.GetFiles().Where(u => u.Extension.EndsWith("zip")).ToList();
+                if (verbose)
+                {
+                    if (files.Count > 0)
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    else
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"starting unzip for {dir.Name}. Directory contains {files.Count} zip files");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                foreach (var file in files)
+                {
+                    if (file.Name.Contains("../") || file.Name.Contains("..\\"))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"{file.Name} seems to be a malicious name!!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Press anything to quit...");
+                        Console.ReadKey();
+                        return false;
+                    }
+
+                    string outputDir = file.DirectoryName + slash + file.Name.Substring(0, file.Name.Length - file.Extension.Length);
+                    if (Directory.Exists(outputDir))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"zip output directory {outputDir} already exists, cannot unzip"); 
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        if (verbose)
+                        {
+                            Console.WriteLine($"Unzipping {file.Name} to {outputDir}");
+                        }
+                        System.IO.Compression.ZipFile.ExtractToDirectory(file.FullName, outputDir);
+                    }
+                }
+            }
             return true;
         }
 
