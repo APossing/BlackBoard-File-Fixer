@@ -1,4 +1,30 @@
-**If running from Mac OS / unix system**
+**How to run C# implementation**
+<br/>
+1. Download appropriate self contained executable for your OS (currenlty have 64bit of osx, linux, windows)
+1. Run with flags anywhere. All flags are optional, all flags are case insensitive
+- `-Directory <string>` or `-D <string>` path to Unzipped blackboard submission, default is current directory if not given.
+- `-Tests <string>` path to folder with tests (all subfolders and items in this folder will be copied to every folder under directory tag), default is "" and will not copy anything.
+- `-NoTrim` Disables trimming of files after moving to named directories
+- `-Verbose` or `-V` Shows almost everything that is happening during execution.  
+- for example `BlackboardSubmissionCleaner -D C:\Users\Adam\Desktop\unzipBlackboard -v -Tests C:\Users\Adam\Desktop\Tests`
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>  
+
+**THIS AREA FOR THE SCRIPT FILES**  
+
+<br/>
+<br/>
+<br/>  
+
+**If running from Mac OS / unix system**  
+
 1. Install PowerShell (https://github.com/PowerShell/PowerShell/releases/) and download and install your system's package and then open it and follow the main instructions.
 
 **How to run**
