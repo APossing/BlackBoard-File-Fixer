@@ -6,7 +6,8 @@
 - `-Tests <string>` path to folder with tests (all subfolders and items in this folder will be copied to every folder under directory tag), default is "" and will not copy anything.
 - `-NoTrim` Disables trimming of files after moving to named directories
 - `-Verbose` or `-V` Shows almost everything that is happening during execution.  
-- for example `BlackboardSubmissionCleaner -D C:\Users\Adam\Desktop\unzipBlackboard -v -Tests C:\Users\Adam\Desktop\Tests`  
+- `-Extract` Extracts all zips contained within student folders.
+- for example `BlackboardSubmissionCleaner -D C:\Users\Adam\Desktop\unzipBlackboard -v -Tests C:\Users\Adam\Desktop\Tests -Extract`  
 <br/>
 
 **.net Core 3.1 self contained executables download links**  
